@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Appliance Repair</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Book Appliance Repair</h2>
+    <form id="applianceForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <textarea id="issue" placeholder="Describe the appliance issue" required></textarea>
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA931rf2zjBaNACyjHl7g1-UV8jI1iKtHw",
+      authDomain: "homeserviceapp-c247c.firebaseapp.com",
+      projectId: "homeserviceapp-c247c",
+      storageBucket: "homeserviceapp-c247c.appspot.com",
+      messagingSenderId: "732651642413",
+      appId: "1:732651642413:web:6aa632489b3d191ba622a4",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    document.getElementById("applianceForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const issue = document.getElementById("issue").value;
+
+      try {
+        await addDoc(collection(db, "applianceBookings"), {
+          name,
+          phone,
+          issue,
+          timestamp: serverTimestamp()
+        });
+        alert("Booking Successful!");
+        window.location.href = "thankyou.html";
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

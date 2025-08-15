@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup | Home Services App</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA931rf2zjBaNACyjHl7g1-UV8jI1iKtHw",
+    authDomain: "homeserviceapp-c247c.firebaseapp.com",
+    projectId: "homeserviceapp-c247c",
+    storageBucket: "homeserviceapp-c247c.appspot.com",
+    messagingSenderId: "732651642413",
+    appId: "1:732651642413:web:6aa632489b3d191ba622a4",
+    measurementId: "G-FSTWKTSDZG"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // 👇 Define the function inside module and attach it to window
+  window.handleSignup = async function(event) {
+    event.preventDefault(); // ✅ stop default form refresh
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords don't match!");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Signup Successful!");
+      window.location.href = "login.html"; // ✅ redirect after success
+    } catch (error) {
+      alert("Signup Failed: " + error.message);
+    }
+  };
+</script>
+
+</head>
+<body>
+  <div class="main-container">
+    <h2 class="app-title">Signup</h2>
+    <form class="form" onsubmit="handleSignup(event)">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit" class="btn btn-alt">Signup</button>
+      <p class="bottom-text">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>
+

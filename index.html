@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sriram Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Welcome to HomeServiceApp</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background: linear-gradient(to right, #f7b733, #fc4a1a);
+      color: white;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+    }
+    button:hover {
+      background-color: #333;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Sriram Vasu</h1>
-    <p>Aspiring Web Developer | JavaScript | Firebase | React</p>
-  </header>
+  <h1>Welcome to Home Services</h1>
+  <p>Please login or signup to continue</p>
+  <button onclick="goToLogin()">Login</button>
+  <button onclick="goToSignup()">Signup</button>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I’m Sriram, a passionate beginner in web development. I’m learning JavaScript, Firebase, and React to become a full-stack developer. I love building real apps and solving problems!</p>
-  </section>
+  <script>
+    function goToLogin() {
+      window.location.href = "login.html";
+    }
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML5 & CSS3</li>
-      <li>JavaScript (ES6+)</li>
-      <li>Firebase (Auth & Firestore)</li>
-      <li>React.js</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>HomeService App</strong> – <a href="#">View Live</a> | <a href="#">GitHub Code</a></li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: sriramvasu77@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/sriram" target="_blank">github.com/sriram</a></p>
-    <p>LinkedIn: <a href="#" target="_blank">Your LinkedIn Profile</a></p>
-  </section>
-
-  <footer>
-    <p>© 2025 Sriram Vasu. All rights reserved.</p>
-  </footer>
+    function goToSignup() {
+      window.location.href = "signup.html";
+    }
+  </script>
 </body>
 </html>
